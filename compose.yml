@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    volumes:
+      - comerce_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+    ports:
+      - "7100:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 1213:8080
+
+volumes:
+  comerce_data:
