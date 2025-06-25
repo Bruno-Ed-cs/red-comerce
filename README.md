@@ -5,6 +5,6 @@ as variaveis de ambiente para o banco de dados são:
 
 ``` bash
 
-DB_PASSWORD
-DB_USER 
+DB_PASSWORD=
+DB_USER= 
 ```
