@@ -14,11 +14,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_25_160141) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "environments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.decimal "price"
     t.integer "quantity"
-    t.string "adress"
+    t.string "address"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,8 +42,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_25_160141) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.string "type"
-    t.string "enviroment"
+    t.string "description"
+    t.bigint "type_id"
+    t.bigint "environment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["environment_id"], name: "index_products_on_environment_id"
+    t.index ["type_id"], name: "index_products_on_type_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,4 +70,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_25_160141) do
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "prices", "products"
+  add_foreign_key "products", "environments"
+  add_foreign_key "products", "types"
 end
