@@ -3,8 +3,8 @@ class CreateProducts < ActiveRecord::Migration[8.0]
     create_table :products do |t|
       t.string :name
       t.string :description
-      t.references :type, null: true, foreign_key: true
-      t.references :environment, null: true, foreign_key: true # Fixed spelling
+      t.string :classification
+      t.string :environment
       t.timestamps
     end
   end
