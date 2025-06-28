@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[8.0]
       t.boolean :admin
       t.jsonb :wishes
       t.jsonb :cart
+      t.jsonb :adresses
 
       t.timestamps
     end

@@ -5,6 +5,9 @@ class CreateProducts < ActiveRecord::Migration[8.0]
       t.string :description
       t.string :classification
       t.string :environment
+      t.decimal :price
+      t.integer :inventory
+      t.decimal :discount
       t.timestamps
     end
   end
