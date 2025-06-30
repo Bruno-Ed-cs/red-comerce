@@ -26,17 +26,17 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit 
+  def edit
     @prod = Product.find(params[:id])
     if @prod.update(product_params)
       render json: @prod
-    else 
+    else
       render json: @prod.errors
     end
 
   end
 
   def product_params
-    params.require(:product).permit(:name, :classification, :description, :environment, :price, :discount, :inventory)
+    params.require(:product).permit(:name, :classification, :description, :environment)
   end
 end
